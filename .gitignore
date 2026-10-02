@@ -1,0 +1,9 @@
+node_modules/
+.npm-cache/
+dist/
+.DS_Store
+*.log
+data/resource-photos/
+.claude/
+
+.git.archive*/

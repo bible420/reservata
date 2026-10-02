@@ -1,0 +1,22 @@
+[
+  {
+    "email": "superadmin@ust.edu.ph",
+    "salt": "e11d9f9432c3e094dcd0d1924a185af2",
+    "passwordHash": "3d1b8a45d8c1c7dd91c4ad4f41458810c4bb3f7a5a82735af7891708fc4c6b85d1d2e9409cd7466c0a6506719abd0edd77a602a017ea7118f63653c0b1bd4d0b"
+  },
+  {
+    "email": "faculty.requester@ust.edu.ph",
+    "salt": "a576a744a43ec347fb8e1fc8d17e938d",
+    "passwordHash": "508c913bdb76e8099e05c5867ad5b4c3db39d37e9d6e8b168dca74e0a3951d7a6f7b7c43371b8f25c23804e35a3d0cc346f575b290b21309326c282f08a9cbd1"
+  },
+  {
+    "email": "student.requester@ust.edu.ph",
+    "salt": "19794d587e79989b6c8afc5b4a25b035",
+    "passwordHash": "a69c7f85572571c8ac60cedf93e2333c2fa52fa78f296d312d842a0475e14a5562aef6bc7ff82d3abac259a0fe7cc333674190423d522fc7fc87a69fed9e4524"
+  },
+  {
+    "email": "simbahayan.admin@ust.edu.ph",
+    "salt": "36427e636f2a8700ffcc6656f0745b34",
+    "passwordHash": "84ba5b901f178fbee67eae29e65217da7f88d1c1a9fba379b90da26272abe232139c5eb3f014c1629c6e967c884486b66e2fa0e65fc77b93ddea6123f3328a85"
+  }
+]

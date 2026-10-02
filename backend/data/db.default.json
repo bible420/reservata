@@ -1,0 +1,447 @@
+{
+  "resources": [
+    {
+      "id": "R-001",
+      "assetTag": "EDTECH-ROBOT-001",
+      "name": "Robot 01",
+      "type": "Equipment",
+      "office": "EdTech",
+      "location": "CICS Lab",
+      "serialNumber": "ROB-UST-001",
+      "tags": [
+        "Robotics",
+        "Lab",
+        "Prototype"
+      ],
+      "capacity": 1,
+      "status": "Available",
+      "requiresPayment": false,
+      "driver": "Not applicable"
+    },
+    {
+      "id": "R-002",
+      "assetTag": "EDTECH-BOTKIT-002",
+      "name": "Bobots Kit",
+      "type": "Equipment",
+      "office": "EdTech",
+      "location": "CICS Lab",
+      "serialNumber": "BOTKIT-UST-002",
+      "tags": [
+        "Robotics",
+        "Kit",
+        "Classroom"
+      ],
+      "capacity": 4,
+      "status": "Available",
+      "requiresPayment": false,
+      "driver": "Not applicable"
+    },
+    {
+      "id": "R-003",
+      "assetTag": "EDTECH-LAPTOP-003",
+      "name": "Loaner Laptops",
+      "type": "Equipment",
+      "office": "EdTech",
+      "location": "CICS Stockroom",
+      "serialNumber": "",
+      "tags": [
+        "Laptop",
+        "Loaner",
+        "Stockroom"
+      ],
+      "capacity": 12,
+      "status": "Reserved",
+      "requiresPayment": false,
+      "driver": "Not applicable"
+    },
+    {
+      "id": "R-005",
+      "assetTag": "SIMBA-VAN-005",
+      "name": "Community Outreach Van",
+      "type": "Vehicle",
+      "office": "Simbahayan",
+      "location": "Carpark B",
+      "serialNumber": "VAN-UST-005",
+      "tags": [
+        "Vehicle",
+        "Outreach",
+        "Paid"
+      ],
+      "capacity": 12,
+      "status": "Available",
+      "requiresPayment": true,
+      "fee": 850,
+      "driver": "With Driver",
+      "workflowTemplateId": "WF-EVENT"
+    },
+    {
+      "id": "R-006",
+      "assetTag": "DOMRES-SHUTTLE-006",
+      "name": "Dominican Shuttle",
+      "type": "Vehicle",
+      "office": "Dominican Residence",
+      "location": "Residence Garage",
+      "serialNumber": "SHUTTLE-UST-006",
+      "tags": [
+        "Vehicle",
+        "Residence",
+        "Maintenance"
+      ],
+      "capacity": 8,
+      "status": "Under Maintenance",
+      "requiresPayment": false,
+      "driver": "With Driver",
+      "workflowTemplateId": "WF-EVENT"
+    },
+    {
+      "id": "R-007",
+      "assetTag": "EDTECH-PROJ-007",
+      "name": "Projector Set A",
+      "type": "Equipment",
+      "office": "EdTech",
+      "location": "AV Storage",
+      "serialNumber": "PROJ-UST-007",
+      "tags": [
+        "AV",
+        "Projector",
+        "Portable"
+      ],
+      "capacity": 1,
+      "status": "Available",
+      "requiresPayment": false,
+      "driver": "Not applicable"
+    },
+    {
+      "id": "R-008",
+      "assetTag": "OSG-PARKING-008",
+      "name": "Visitor Parking Bay",
+      "type": "Visitor Service",
+      "office": "OSG",
+      "location": "Main Gate",
+      "serialNumber": "",
+      "tags": [
+        "Parking",
+        "Visitor",
+        "OSG"
+      ],
+      "capacity": 20,
+      "status": "Available",
+      "requiresPayment": false,
+      "driver": "Not applicable"
+    }
+  ],
+  "reservations": [
+    {
+      "id": "REQ-2026-001",
+      "requester": "Student Body Requester",
+      "resourceId": "R-001",
+      "resourceName": "Robot 01",
+      "office": "EdTech",
+      "type": "Equipment",
+      "date": "2026-08-27",
+      "start": "08:00",
+      "end": "12:00",
+      "purpose": "Robotics class prototype testing",
+      "status": "Pending",
+      "submittedAt": "2026-08-24 09:10",
+      "requiresPayment": false
+    },
+    {
+      "id": "REQ-2026-003",
+      "requester": "Fr. Jose",
+      "resourceId": "R-005",
+      "resourceName": "Community Outreach Van",
+      "office": "Simbahayan",
+      "type": "Vehicle",
+      "date": "2026-08-29",
+      "start": "09:00",
+      "end": "15:00",
+      "purpose": "Outreach partner visit",
+      "status": "Approved",
+      "submittedAt": "2026-08-23 14:22",
+      "requiresPayment": true,
+      "paymentId": "PAY-002"
+    },
+    {
+      "id": "REQ-2026-004",
+      "requester": "CICS Visitor Requester",
+      "resourceId": "R-007",
+      "resourceName": "Projector Set A",
+      "office": "Simbahayan",
+      "type": "Equipment",
+      "date": "2026-08-30",
+      "start": "10:00",
+      "end": "12:00",
+      "purpose": "College seminar documentation",
+      "status": "Pending",
+      "submittedAt": "2026-08-24 11:18",
+      "requiresPayment": false
+    }
+  ],
+  "payments": [
+    {
+      "id": "PAY-002",
+      "reservationId": "REQ-2026-003",
+      "requester": "Fr. Jose",
+      "amount": 850,
+      "receipt": "receipt-REQ-2026-003.jpg",
+      "status": "Verified"
+    }
+  ],
+  "visitors": [
+    {
+      "id": "VIS-001",
+      "requester": "CICS Visitor Requester",
+      "visitor": "Dr. Elena Cruz",
+      "organization": "Department of Education",
+      "purpose": "University partnership meeting",
+      "date": "2026-08-25",
+      "time": "09:30",
+      "guests": 3,
+      "cars": 1,
+      "plate": "NCR 4821",
+      "parking": "A1",
+      "status": "Pending"
+    },
+    {
+      "id": "VIS-002",
+      "requester": "CICS Visitor Requester",
+      "visitor": "Manila Science High School",
+      "organization": "MSHS",
+      "purpose": "Campus familiarization visit",
+      "date": "2026-08-25",
+      "time": "10:30",
+      "guests": 12,
+      "cars": 2,
+      "plate": "NFG 101 / DTR 904",
+      "parking": "A2-A3",
+      "status": "Approved"
+    },
+    {
+      "id": "VIS-003",
+      "requester": "College Secretary",
+      "visitor": "Atty. Ramon de Leon",
+      "organization": "CHED",
+      "purpose": "Official courtesy call",
+      "date": "2026-08-25",
+      "time": "14:00",
+      "guests": 2,
+      "cars": 1,
+      "plate": "GOV 883",
+      "parking": "B1",
+      "status": "Arrived"
+    }
+  ],
+  "people": [
+    {
+      "name": "Student Body Requester",
+      "email": "student.body.requester@ust.edu.ph",
+      "office": "Student Body",
+      "role": "Requester",
+      "requesterType": "Student",
+      "status": "Active"
+    },
+    {
+      "name": "Simbahayan Office Admin",
+      "email": "simbahayan.admin@ust.edu.ph",
+      "office": "Simbahayan",
+      "role": "Office Admin",
+      "status": "Active"
+    },
+    {
+      "name": "OSG Office Admin",
+      "email": "osg.office.admin@ust.edu.ph",
+      "office": "OSG",
+      "role": "Office Admin",
+      "requesterType": "",
+      "status": "Active"
+    },
+    {
+      "name": "Dominican Residence Office Admin",
+      "email": "dominicanresidence.admin@ust.edu.ph",
+      "office": "Dominican Residence",
+      "role": "Office Admin",
+      "requesterType": "",
+      "status": "Active"
+    },
+    {
+      "name": "OSG Admin",
+      "email": "osg.admin@ust.edu.ph",
+      "office": "OSG",
+      "role": "OSG Admin",
+      "status": "Active"
+    },
+    {
+      "name": "All Offices Super Admin",
+      "email": "superadmin@ust.edu.ph",
+      "office": "All Offices",
+      "role": "Super Admin",
+      "status": "Active"
+    },
+    {
+      "name": "CICS Visitor Requester",
+      "email": "cics.visitor.requester@ust.edu.ph",
+      "office": "CICS",
+      "role": "Requester",
+      "requesterType": "Student Org Rep",
+      "status": "Active"
+    },
+    {
+      "name": "EdTech Office Admin",
+      "email": "edtech.admin@ust.edu.ph",
+      "office": "EdTech",
+      "role": "Office Admin",
+      "status": "Active"
+    }
+  ],
+  "offices": [
+    {
+      "id": "OFF-EDTECH",
+      "name": "EdTech",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-SIMBAHAYAN",
+      "name": "Simbahayan",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-DOMINICAN",
+      "name": "Dominican Residence",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-FACILITIES",
+      "name": "Facilities Management",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-OSG",
+      "name": "OSG",
+      "status": "Active"
+    }
+  ],
+  "drivers": [
+    {
+      "id": "DRV-001",
+      "name": "Ramon Cruz",
+      "licenseNumber": "N01-23-456789",
+      "office": "Simbahayan",
+      "phone": "0917-000-0001",
+      "status": "Available"
+    },
+    {
+      "id": "DRV-002",
+      "name": "Teresa Lim",
+      "licenseNumber": "N02-34-567890",
+      "office": "Dominican Residence",
+      "phone": "0917-000-0002",
+      "status": "Available"
+    }
+  ],
+  "approvingBodies": [
+    {
+      "id": "AB-001",
+      "office": "Facilities Management",
+      "bodyName": "Facilities Setup Desk",
+      "description": "Reviews setup and maintenance readiness.",
+      "status": "Active"
+    },
+    {
+      "id": "AB-002",
+      "office": "OSG",
+      "bodyName": "OSG Security Office",
+      "description": "Reviews external visitor and security clearance.",
+      "status": "Active"
+    }
+  ],
+  "approvalTemplates": [
+    {
+      "id": "WF-BASIC",
+      "name": "Basic Resource Approval",
+      "resourceType": "All",
+      "status": "Active",
+      "steps": [
+        {
+          "id": "OWNER",
+          "name": "Resource Owner Review",
+          "office": "$OWNER",
+          "sequence": 1
+        }
+      ]
+    },
+    {
+      "id": "WF-EVENT",
+      "name": "Event Vehicle Approval",
+      "resourceType": "Vehicle",
+      "status": "Active",
+      "steps": [
+        {
+          "id": "OWNER",
+          "name": "Resource Owner Review",
+          "office": "$OWNER",
+          "sequence": 1
+        },
+        {
+          "id": "SETUP",
+          "name": "Facilities Setup",
+          "office": "Facilities Management",
+          "sequence": 2,
+          "approvingBodyId": "AB-001"
+        },
+        {
+          "id": "OSG",
+          "name": "OSG Event Review",
+          "office": "OSG",
+          "sequence": 2,
+          "approvingBodyId": "AB-002"
+        },
+        {
+          "id": "PARKING",
+          "name": "Visitor Parking Review",
+          "office": "OSG",
+          "sequence": 2
+        }
+      ]
+    }
+  ],
+  "systemSettings": [
+    {
+      "id": "SYSTEM",
+      "defaultWorkflowTemplateId": "WF-BASIC",
+      "maxReservationHours": 12,
+      "paymentDeadlineHours": 24,
+      "paymentInstructions": "Settle the exact fee with the resource-owning office after the final approval. Bring your reservation ID and pay at the office cashier, or ask the office for its bank or e-payment details. Upload the official receipt in My Requests before the payment window closes.",
+      "parkingCapacity": 20
+    }
+  ],
+  "notifications": [
+    {
+      "id": "N-001",
+      "user": "Student Body Requester",
+      "message": "Robot 01 request is pending EdTech review.",
+      "unread": true
+    },
+    {
+      "id": "N-002",
+      "user": "Anna Villanueva",
+      "message": "Please wait for payment verification before final confirmation.",
+      "unread": true
+    }
+  ],
+  "activity": [
+    {
+      "action": "Reservation submitted",
+      "actor": "Student Body Requester",
+      "target": "Robot 01",
+      "time": "Today 09:10"
+    },
+    {
+      "action": "Visitor request approved",
+      "actor": "OSG Admin",
+      "target": "Manila Science High School",
+      "time": "Yesterday 16:18"
+    }
+  ],
+  "reservationDrivers": []
+}

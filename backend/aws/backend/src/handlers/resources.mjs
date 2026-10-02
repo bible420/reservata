@@ -1,0 +1,301 @@
+import { authenticatedUser, requireOffice, requireRole, ROLES } from "../lib/auth.mjs";
+import { HttpError, json, method, parseBody, requireFields, wrap } from "../lib/http.mjs";
+import { repository } from "../lib/repository.mjs";
+import { activityRecord, createId, now } from "../lib/records.mjs";
+import { MAX_PAYMENT_DEADLINE_HOURS, MIN_PAYMENT_DEADLINE_HOURS } from "../lib/reservationLifecycle.mjs";
+import { TABLES } from "../lib/tables.mjs";
+import { S3Client } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { photoCommand, savePhoto, validatePhotoOwner, validPhotoKey } from "../lib/resourcePhotos.mjs";
+
+const STATUSES = ["Available", "Reserved", "In Use", "Under Maintenance", "Unavailable"];
+const TYPES = ["Vehicle", "Equipment", "Visitor Service"];
+const OFFICE_RESOURCE_TYPES = {
+  EdTech: ["Equipment"],
+  Simbahayan: ["Vehicle"],
+  "Dominican Residence": ["Vehicle"],
+  OSG: ["Visitor Service"]
+};
+
+function todayIso() {
+  const date = new Date();
+  const offset = date.getTimezoneOffset() * 60_000;
+  return new Date(date.getTime() - offset).toISOString().slice(0, 10);
+}
+
+function toMinutes(value) {
+  const [hours, minutes] = String(value || "").split(":").map(Number);
+  if (!Number.isInteger(hours) || !Number.isInteger(minutes)) return null;
+  return hours * 60 + minutes;
+}
+
+function validateOperatingHours(openTime, closeTime) {
+  if (openTime && toMinutes(openTime) === null) throw new HttpError(400, "Open time must be a valid time.");
+  if (closeTime && toMinutes(closeTime) === null) throw new HttpError(400, "Close time must be a valid time.");
+  if (openTime && closeTime && toMinutes(openTime) >= toMinutes(closeTime)) {
+    throw new HttpError(400, "Open time must be earlier than close time.");
+  }
+}
+
+function normalizeBlockedDates(value) {
+  const source = Array.isArray(value) ? value : [];
+  const seen = new Set();
+  return source
+    .map((item) => ({ date: String(item?.date || "").trim(), reason: String(item?.reason || "").trim().slice(0, 140) }))
+    .filter((item) => item.date && !seen.has(item.date) && seen.add(item.date))
+    .sort((left, right) => left.date.localeCompare(right.date))
+    .slice(0, 200);
+}
+
+function normalizeAssetTag(value) {
+  return String(value || "").trim().toUpperCase().replace(/[^A-Z0-9-]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+function assetTagPrefix(office, type) {
+  const officeWords = String(office || "").trim().toUpperCase().match(/[A-Z0-9]+/g) || ["OFFICE"];
+  const officeCode = officeWords.length > 1
+    ? officeWords.map((word) => word.slice(0, 3)).join("").slice(0, 8)
+    : officeWords[0].slice(0, 6);
+  const typeCodes = {
+    Vehicle: "VEH",
+    Equipment: "EQP",
+    "Visitor Service": "VIS"
+  };
+  return `${officeCode || "OFFICE"}-${typeCodes[type] || "RES"}`;
+}
+
+function generateAssetTag(resources = [], office = "", type = "Equipment", currentId = "") {
+  const prefix = assetTagPrefix(office, type);
+  const used = new Set(resources.filter((resource) => resource.id !== currentId).map((resource) => normalizeAssetTag(resource.assetTag || "")));
+  const numbers = [...used]
+    .filter((assetTag) => assetTag.startsWith(`${prefix}-`))
+    .map((assetTag) => Number(assetTag.slice(prefix.length + 1)))
+    .filter(Number.isInteger);
+  let nextNumber = Math.max(0, ...numbers) + 1;
+  let candidate = `${prefix}-${String(nextNumber).padStart(3, "0")}`;
+  while (used.has(candidate)) {
+    nextNumber += 1;
+    candidate = `${prefix}-${String(nextNumber).padStart(3, "0")}`;
+  }
+  return candidate;
+}
+
+function normalizeResourceTags(value) {
+  const source = Array.isArray(value) ? value : String(value || "").split(",");
+  return [...new Set(source
+    .map((item) => String(item || "").trim())
+    .filter(Boolean)
+    .map((item) => item.slice(0, 32)))].slice(0, 8);
+}
+
+function paymentDeadlineHoursFrom(value) {
+  if (value === undefined || value === null || value === "") return null;
+  const number = Number(value);
+  if (!Number.isInteger(number) || number < MIN_PAYMENT_DEADLINE_HOURS || number > MAX_PAYMENT_DEADLINE_HOURS) {
+    throw new HttpError(400, `Payment window must be a whole number from ${MIN_PAYMENT_DEADLINE_HOURS} to ${MAX_PAYMENT_DEADLINE_HOURS} hours.`);
+  }
+  return number;
+}
+
+function assertUniqueAssetTag(resources, assetTag, currentId = "") {
+  if (!assetTag) throw new HttpError(400, "Asset tag is required.");
+  if (resources.some((item) => item.id !== currentId && normalizeAssetTag(item.assetTag) === assetTag)) {
+    throw new HttpError(409, "Asset tag must be unique.");
+  }
+}
+
+export function createHandler(repo = repository, s3 = new S3Client({}), signer = getSignedUrl) {
+  return wrap(async (event) => {
+    const user = await authenticatedUser(event, repo);
+    const requestMethod = method(event);
+    const rawPath = event.rawPath || event.path || "";
+
+    if (rawPath === "/drivers" && requestMethod === "GET") {
+      requireRole(user, ROLES.officeAdmin, ROLES.superAdmin);
+      const items = user.role === ROLES.superAdmin
+        ? await repo.scan(TABLES.drivers)
+        : await repo.query(TABLES.drivers, "office-index", "office", user.office);
+      return json(200, { items });
+    }
+
+    if (rawPath === "/drivers" && requestMethod === "POST") {
+      requireRole(user, ROLES.officeAdmin);
+      const body = parseBody(event);
+      requireFields(body, ["name", "licenseNumber"]);
+      const createdAt = now();
+      const driver = {
+        id: createId("DRV"),
+        name: String(body.name).trim(),
+        licenseNumber: String(body.licenseNumber).trim(),
+        userEmail: String(body.userEmail || "").trim().toLowerCase(),
+        office: user.office,
+        phone: String(body.phone || "").trim(),
+        status: "Available",
+        createdAt,
+        updatedAt: createdAt
+      };
+      await repo.transact([
+        { Put: { TableName: TABLES.drivers, Item: driver, ConditionExpression: "attribute_not_exists(id)" } },
+        { Put: { TableName: TABLES.activity, Item: activityRecord(user, "Driver created", driver.name) } }
+      ]);
+      return json(201, driver);
+    }
+
+    if (rawPath.startsWith("/drivers/") && requestMethod === "PATCH") {
+      requireRole(user, ROLES.officeAdmin);
+      const driver = await repo.get(TABLES.drivers, { id: event.pathParameters?.id });
+      if (!driver) throw new HttpError(404, "Driver not found.");
+      if (driver.office !== user.office) throw new HttpError(403, "Only the owning office can edit this driver.");
+      const body = parseBody(event);
+      if (body.status && !["Available", "Unavailable"].includes(body.status)) throw new HttpError(400, "Unsupported driver status.");
+      const changes = {
+        name: body.name === undefined ? undefined : String(body.name).trim(),
+        licenseNumber: body.licenseNumber === undefined ? undefined : String(body.licenseNumber).trim(),
+        userEmail: body.userEmail === undefined ? undefined : String(body.userEmail).trim().toLowerCase(),
+        phone: body.phone === undefined ? undefined : String(body.phone).trim(),
+        status: body.status,
+        updatedAt: now()
+      };
+      const updated = await repo.update(TABLES.drivers, { id: driver.id }, changes, {
+        ConditionExpression: "office = :office",
+        ExpressionAttributeValues: { ":office": user.office }
+      });
+      await repo.put(TABLES.activity, activityRecord(user, "Driver updated", updated.name));
+      return json(200, updated);
+    }
+
+    if (rawPath === "/resource-photos" && requestMethod === "POST") {
+      requireRole(user, ROLES.officeAdmin);
+      return json(201, await savePhoto(s3, user, parseBody(event).data));
+    }
+    if (rawPath.startsWith("/resource-photos/") && requestMethod === "GET") {
+      const key = event.pathParameters?.id || "";
+      if (!validPhotoKey(key)) throw new HttpError(404, "Resource photo not found.");
+      const resource = (await repo.scan(TABLES.resources)).find((item) => item.photoKey === key);
+      const visible = resource && (user.role === ROLES.superAdmin || (user.role === ROLES.officeAdmin && resource.office === user.office) || (user.role === ROLES.requester && resource.status !== "Archived" && resource.type !== "Visitor Service"));
+      if (!visible) throw new HttpError(404, "Resource photo not found.");
+      return json(200, { url: await signer(s3, photoCommand(key), { expiresIn: 3600 }) });
+    }
+
+    if (requestMethod === "GET") {
+      let items;
+      if (user.role === ROLES.officeAdmin) items = await repo.query(TABLES.resources, "office-index", "office", user.office);
+      else if ([ROLES.requester, ROLES.superAdmin].includes(user.role)) {
+        items = await repo.scan(TABLES.resources);
+        if (user.role === ROLES.requester) {
+          items = items.filter((item) => item.status !== "Archived" && item.type !== "Visitor Service" && (user.requesterType !== "Student" || item.type === "Equipment"));
+        }
+      }
+      else items = await repo.query(TABLES.resources, "office-index", "office", "OSG");
+      return json(200, { items });
+    }
+
+    if (requestMethod === "POST") {
+      requireRole(user, ROLES.officeAdmin);
+      const body = parseBody(event);
+      requireFields(body, ["name", "type", "location", "capacity"]);
+      if (!TYPES.includes(body.type)) throw new HttpError(400, "Unsupported resource type.");
+      const allowedTypes = OFFICE_RESOURCE_TYPES[user.office];
+      if (allowedTypes && !allowedTypes.includes(body.type)) {
+        throw new HttpError(400, `${user.office} can only manage ${allowedTypes.join(" or ")} resources.`);
+      }
+      const resources = await repo.scan(TABLES.resources);
+      const assetTag = normalizeAssetTag(body.assetTag || generateAssetTag(resources, user.office, body.type));
+      assertUniqueAssetTag(resources, assetTag);
+      const workflowTemplateId = body.workflowTemplateId || "WF-BASIC";
+      const workflow = await repo.get(TABLES.approvalWorkflows, { id: workflowTemplateId });
+      if (!workflow || workflow.status !== "Active") throw new HttpError(400, "Select an active approval workflow.");
+      validateOperatingHours(body.openTime, body.closeTime);
+      const createdAt = now();
+      const resource = {
+        photoKey: validatePhotoOwner(body.photoKey, user),
+        id: createId("R"),
+        assetTag,
+        name: String(body.name).trim(),
+        type: body.type,
+        office: user.office,
+        location: String(body.location).trim(),
+        serialNumber: String(body.serialNumber || "").trim(),
+        tags: normalizeResourceTags(body.tags || [body.type, user.office]),
+        capacity: Number(body.capacity),
+        status: "Available",
+        requiresPayment: Boolean(body.requiresPayment),
+        fee: body.requiresPayment ? Number(body.fee || 0) : 0,
+        paymentDeadlineHours: body.requiresPayment ? paymentDeadlineHoursFrom(body.paymentDeadlineHours) : null,
+        driver: body.driver || "Not applicable",
+        openTime: String(body.openTime || "").trim(),
+        closeTime: String(body.closeTime || "").trim(),
+        blockedDates: normalizeBlockedDates(body.blockedDates).filter((item) => item.date >= todayIso()),
+        workflowTemplateId,
+        createdAt,
+        updatedAt: createdAt
+      };
+      const activity = activityRecord(user, "Resource created", resource.name);
+      await repo.transact([
+        { Put: { TableName: TABLES.resources, Item: resource, ConditionExpression: "attribute_not_exists(id)" } },
+        { Put: { TableName: TABLES.activity, Item: activity } }
+      ]);
+      return json(201, resource);
+    }
+
+    if (requestMethod === "PATCH") {
+      requireRole(user, ROLES.officeAdmin);
+      const resource = await repo.get(TABLES.resources, { id: event.pathParameters?.id });
+      if (!resource) throw new HttpError(404, "Resource not found.");
+      requireOffice(user, resource);
+      const body = parseBody(event);
+      const statusOnly = (event.rawPath || event.path || "").endsWith("/status");
+      if (body.status && ![...STATUSES, "Archived"].includes(body.status)) throw new HttpError(400, "Unsupported resource status.");
+      const updatedAt = now();
+      if (statusOnly && !body.status) throw new HttpError(400, "status is required.");
+      const assetTag = body.assetTag === undefined ? undefined : normalizeAssetTag(body.assetTag);
+      if (assetTag !== undefined) assertUniqueAssetTag(await repo.scan(TABLES.resources), assetTag, resource.id);
+      if (body.workflowTemplateId) {
+        const workflow = await repo.get(TABLES.approvalWorkflows, { id: body.workflowTemplateId });
+        if (!workflow || workflow.status !== "Active") throw new HttpError(400, "Select an active approval workflow.");
+      }
+      const changes = statusOnly ? { status: body.status, updatedAt } : {
+        photoKey: body.photoKey === undefined ? undefined : validatePhotoOwner(body.photoKey, user),
+        name: body.name === undefined ? undefined : String(body.name).trim(),
+        assetTag,
+        type: body.type,
+        location: body.location === undefined ? undefined : String(body.location).trim(),
+        serialNumber: body.serialNumber === undefined ? undefined : String(body.serialNumber || "").trim(),
+        tags: body.tags === undefined ? undefined : normalizeResourceTags(body.tags),
+        capacity: body.capacity === undefined ? undefined : Number(body.capacity),
+        status: body.status,
+        requiresPayment: body.requiresPayment === undefined ? undefined : Boolean(body.requiresPayment),
+        fee: body.requiresPayment === false ? 0 : body.fee === undefined ? undefined : Number(body.fee),
+        paymentDeadlineHours: body.requiresPayment === false ? null : body.paymentDeadlineHours === undefined ? undefined : paymentDeadlineHoursFrom(body.paymentDeadlineHours),
+        driver: body.driver,
+        openTime: body.openTime === undefined ? undefined : String(body.openTime || "").trim(),
+        closeTime: body.closeTime === undefined ? undefined : String(body.closeTime || "").trim(),
+        blockedDates: body.blockedDates === undefined ? undefined : normalizeBlockedDates(body.blockedDates),
+        workflowTemplateId: body.workflowTemplateId,
+        updatedAt
+      };
+      if (changes.type && !TYPES.includes(changes.type)) throw new HttpError(400, "Unsupported resource type.");
+      if (changes.type) {
+        const allowedTypes = OFFICE_RESOURCE_TYPES[user.office];
+        if (allowedTypes && !allowedTypes.includes(changes.type)) {
+          throw new HttpError(400, `${user.office} can only manage ${allowedTypes.join(" or ")} resources.`);
+        }
+      }
+      validateOperatingHours(
+        changes.openTime === undefined ? resource.openTime : changes.openTime,
+        changes.closeTime === undefined ? resource.closeTime : changes.closeTime
+      );
+      const action = body.status === "Archived" ? "Resource archived" : statusOnly ? "Resource status updated" : "Resource updated";
+      const updated = await repo.update(TABLES.resources, { id: resource.id }, changes, {
+        ConditionExpression: "office = :office",
+        ExpressionAttributeValues: { ":office": user.office }
+      });
+      await repo.put(TABLES.activity, activityRecord(user, action, updated.name));
+      return json(200, updated);
+    }
+
+    throw new HttpError(405, "Method not allowed.");
+  });
+}
+
+export const handler = createHandler();

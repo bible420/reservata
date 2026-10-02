@@ -1,0 +1,204 @@
+{
+  "resources": [],
+  "reservations": [],
+  "payments": [],
+  "visitors": [],
+  "people": [
+    {
+      "name": "All Offices Super Admin",
+      "role": "Super Admin",
+      "email": "superadmin@ust.edu.ph",
+      "office": "All Offices",
+      "status": "Active"
+    },
+    {
+      "name": "Faculty Requester",
+      "email": "faculty.requester@ust.edu.ph",
+      "office": "CICS",
+      "role": "Requester",
+      "requesterType": "Faculty",
+      "status": "Active"
+    },
+    {
+      "name": "Student Requester",
+      "email": "student.requester@ust.edu.ph",
+      "office": "CICS",
+      "role": "Requester",
+      "requesterType": "Student",
+      "status": "Active"
+    },
+    {
+      "name": "Simbahayan Admin",
+      "email": "simbahayan.admin@ust.edu.ph",
+      "office": "Simbahayan",
+      "role": "Office Admin",
+      "requesterType": "",
+      "status": "Active"
+    }
+  ],
+  "offices": [
+    {
+      "id": "OFF-EDTECH",
+      "name": "EdTech",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-SIMBAHAYAN",
+      "name": "Simbahayan",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-DOMINICAN",
+      "name": "Dominican Residence",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-FACILITIES",
+      "name": "Facilities Management",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-OSG",
+      "name": "OSG",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-1787707956005",
+      "name": "Faculty of Arts and Letters",
+      "status": "Active"
+    }
+  ],
+  "approvalTemplates": [
+    {
+      "id": "WF-BASIC",
+      "name": "Basic Resource Approval",
+      "steps": [
+        {
+          "id": "OWNER",
+          "name": "Resource Owner Review",
+          "office": "$OWNER",
+          "sequence": 1
+        }
+      ],
+      "status": "Active",
+      "resourceType": "All"
+    },
+    {
+      "id": "WF-EVENT",
+      "name": "Event Vehicle Approval",
+      "steps": [
+        {
+          "id": "OWNER",
+          "name": "Resource Owner Review",
+          "office": "$OWNER",
+          "sequence": 1
+        },
+        {
+          "id": "SETUP",
+          "name": "Facilities Setup",
+          "office": "Facilities Management",
+          "sequence": 2,
+          "approvingBodyId": "AB-001"
+        },
+        {
+          "id": "OSG",
+          "name": "OSG Event Review",
+          "office": "OSG",
+          "sequence": 2,
+          "approvingBodyId": "AB-002"
+        },
+        {
+          "id": "PARKING",
+          "name": "Visitor Parking Review",
+          "office": "OSG",
+          "sequence": 2
+        }
+      ],
+      "status": "Active",
+      "resourceType": "Vehicle"
+    }
+  ],
+  "systemSettings": [
+    {
+      "id": "SYSTEM",
+      "parkingCapacity": 20,
+      "maxReservationHours": 12,
+      "paymentInstructions": "Settle the exact fee with the resource-owning office after the final approval. Bring your reservation ID and pay at the office cashier, or ask the office for its bank or e-payment details. Upload the official receipt in My Requests before the payment window closes.",
+      "paymentDeadlineHours": 24,
+      "defaultWorkflowTemplateId": "WF-BASIC",
+      "paymentSteps": [
+        {
+          "title": "Wait for the approvals to finish",
+          "detail": "Each office reviews the request in turn. Your request moves to For Payment only after every required approval is granted."
+        },
+        {
+          "title": "Pay {fee} to {office}",
+          "detail": "Settle the fee within {window} hours after the final approval. The window is set when the payment handoff is created."
+        },
+        {
+          "title": "Upload your receipt from My Requests",
+          "detail": "Open My Requests, find this reservation, and use Upload Receipt. Accepted files are JPG, PNG, or PDF under 700 KB."
+        },
+        {
+          "title": "{office} verifies the receipt",
+          "detail": "The office either accepts it, which confirms the reservation, or rejects it with a written reason you can read immediately."
+        },
+        {
+          "title": "Missing the window expires the request",
+          "detail": "If the payment window passes with no receipt uploaded, the reservation is marked Expired and the time slot is released."
+        }
+      ]
+    }
+  ],
+  "notifications": [],
+  "activity": [
+    {
+      "id": "ACT-AA1EF9EF",
+      "action": "Office updated",
+      "actor": "All Offices Super Admin",
+      "target": "EdTech",
+      "details": "",
+      "time": "Oct 2, 2026, 7:01 PM"
+    },
+    {
+      "id": "ACT-0EC08E25",
+      "action": "Office updated",
+      "actor": "All Offices Super Admin",
+      "target": "EdTec",
+      "details": "",
+      "time": "Oct 2, 2026, 7:01 PM"
+    },
+    {
+      "id": "ACT-bc27d668-1455-4e63-bba8-98624c7b001d",
+      "action": "User account created",
+      "actor": "All Offices Super Admin",
+      "target": "Simbahayan Admin",
+      "details": "simbahayan.admin@ust.edu.ph",
+      "time": "2026-10-02T07:45:26.816Z"
+    },
+    {
+      "id": "ACT-d4ee8506-82de-4cf7-81ca-3ac7f8a3cf59",
+      "action": "User account created",
+      "actor": "All Offices Super Admin",
+      "target": "Student Requester",
+      "details": "student.requester@ust.edu.ph",
+      "time": "2026-10-02T07:26:43.207Z"
+    },
+    {
+      "id": "ACT-a2d64c8a-a1b6-4d9f-b275-96873d7b870f",
+      "action": "User account created",
+      "actor": "All Offices Super Admin",
+      "target": "Faculty Requester",
+      "details": "faculty.requester@ust.edu.ph",
+      "time": "2026-10-02T07:22:53.147Z"
+    },
+    {
+      "id": "ACT-A92A7BE4",
+      "action": "Office updated",
+      "actor": "All Offices Super Admin",
+      "target": "Simbahayan",
+      "details": "",
+      "time": "Oct 2, 2026, 3:19 PM"
+    }
+  ]
+}

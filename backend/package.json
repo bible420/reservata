@@ -1,0 +1,19 @@
+{
+  "name": "reservata-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RESERVATA local Node.js API server plus AWS serverless deployment target.",
+  "scripts": {
+    "start": "node server.js",
+    "api": "node server.js",
+    "start:db": "node scripts/with-db.js",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "test": "node --test test/*.test.js",
+    "aws:check": "npm --prefix aws/backend run check",
+    "aws:test": "npm --prefix aws/backend run test"
+  },
+  "dependencies": {
+    "pg": "^8.13.1"
+  }
+}

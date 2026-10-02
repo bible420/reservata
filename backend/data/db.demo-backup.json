@@ -1,0 +1,940 @@
+{
+  "people": [
+    {
+      "name": "Student Body Requester",
+      "role": "Requester",
+      "email": "student.body.requester@ust.edu.ph",
+      "office": "Student Body",
+      "status": "Active",
+      "requesterType": "Student"
+    },
+    {
+      "name": "Simbahayan Office Admin",
+      "role": "Office Admin",
+      "email": "simbahayan.admin@ust.edu.ph",
+      "office": "Simbahayan",
+      "status": "Active"
+    },
+    {
+      "name": "OSG Office Admin",
+      "role": "Office Admin",
+      "email": "osg.office.admin@ust.edu.ph",
+      "office": "OSG",
+      "status": "Active",
+      "requesterType": ""
+    },
+    {
+      "name": "Dominican Residence Office Admin",
+      "role": "Office Admin",
+      "email": "dominicanresidence.admin@ust.edu.ph",
+      "office": "Dominican Residence",
+      "status": "Active",
+      "requesterType": ""
+    },
+    {
+      "name": "OSG Admin",
+      "role": "OSG Admin",
+      "email": "osg.admin@ust.edu.ph",
+      "office": "OSG",
+      "status": "Active"
+    },
+    {
+      "name": "All Offices Super Admin",
+      "role": "Super Admin",
+      "email": "superadmin@ust.edu.ph",
+      "office": "All Offices",
+      "status": "Active"
+    },
+    {
+      "name": "CICS Visitor Requester",
+      "role": "Requester",
+      "email": "cics.visitor.requester@ust.edu.ph",
+      "office": "CICS",
+      "status": "Active",
+      "requesterType": "Student Org Rep"
+    },
+    {
+      "name": "EdTech Office Admin",
+      "role": "Office Admin",
+      "email": "edtech.admin@ust.edu.ph",
+      "office": "EdTech",
+      "status": "Active"
+    },
+    {
+      "name": "Tawni Silva",
+      "role": "Office Admin",
+      "email": "tawnisilva@ust.edu.ph",
+      "office": "Faculty of Arts and Letters",
+      "status": "Inactive"
+    },
+    {
+      "name": "Faculty Requester",
+      "role": "Requester",
+      "email": "faculty.requester@ust.edu.ph",
+      "office": "College of Science",
+      "status": "Active",
+      "requesterType": "Faculty"
+    }
+  ],
+  "offices": [
+    {
+      "id": "OFF-EDTECH",
+      "name": "EdTech",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-SIMBAHAYAN",
+      "name": "Simbahayan",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-DOMINICAN",
+      "name": "Dominican Residence",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-FACILITIES",
+      "name": "Facilities Management",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-OSG",
+      "name": "OSG",
+      "status": "Active"
+    },
+    {
+      "id": "OFF-1787707956005",
+      "name": "Faculty of Arts and Letters",
+      "status": "Active"
+    }
+  ],
+  "activity": [
+    {
+      "id": "ACT-80a518bb-be02-48c1-a7ad-b16a421d624d",
+      "time": "2026-10-01T16:18:07.561Z",
+      "actor": "System",
+      "action": "Reservation expired",
+      "target": "Community Outreach Van",
+      "details": "REQ-2026-64B196B3"
+    },
+    {
+      "id": "ACT-d499c89a-8893-4270-8ac2-74aabc502964",
+      "time": "2026-09-30T07:51:18.717Z",
+      "actor": "All Offices Super Admin",
+      "action": "User account created",
+      "target": "Faculty Requester",
+      "details": "faculty.requester@ust.edu.ph"
+    },
+    {
+      "id": "ACT-CC78CAE2",
+      "time": "Sep 30, 2026, 2:50 PM",
+      "actor": "All Offices Super Admin",
+      "action": "User access updated",
+      "target": "Tawni Silva: Inactive",
+      "details": ""
+    },
+    {
+      "id": "ACT-0E2FD3D8",
+      "time": "Sep 30, 2026, 12:40 PM",
+      "actor": "All Offices Super Admin",
+      "action": "Approval workflow created",
+      "target": "Matthew",
+      "details": ""
+    },
+    {
+      "time": "Just now",
+      "actor": "All Offices Super Admin",
+      "action": "User account created",
+      "target": "Tawni Silva"
+    },
+    {
+      "time": "Just now",
+      "actor": "All Offices Super Admin",
+      "action": "Office created",
+      "target": "Faculty of Arts and Letters"
+    },
+    {
+      "time": "Just now",
+      "actor": "OSG Admin",
+      "action": "Visitor arrival recorded",
+      "target": "Manila Science High School"
+    },
+    {
+      "time": "Just now",
+      "actor": "OSG Admin",
+      "action": "Visitor arrival recorded",
+      "target": "Dr. Elena Cruz"
+    },
+    {
+      "time": "Just now",
+      "actor": "OSG Admin",
+      "action": "Visitor request approved",
+      "target": "Dr. Elena Cruz"
+    },
+    {
+      "time": "Yesterday 16:18",
+      "actor": "OSG Admin",
+      "action": "Visitor request approved",
+      "target": "Manila Science High School"
+    },
+    {
+      "id": "ACT-85083127-502c-4376-b635-1f9e1160640f",
+      "time": "2026-09-07T11:01:36.457Z",
+      "actor": "System",
+      "action": "Reservation expired",
+      "target": "Community Outreach Van",
+      "details": "REQ-2026-003"
+    },
+    {
+      "time": "Just now",
+      "actor": "Simbahayan Office Admin",
+      "action": "Approval step approved",
+      "target": "Projector Set A: Resource Owner Review"
+    },
+    {
+      "id": "ACT-7271a04a-029c-4f24-abca-480d8e2b31a7",
+      "time": "2026-10-01T16:18:07.561Z",
+      "actor": "System",
+      "action": "Reservation expired",
+      "target": "Bobots Kit",
+      "details": "REQ-2026-4BAB6004"
+    },
+    {
+      "id": "ACT-5daf3d89-8abb-43a7-9942-d02ff9aba75c",
+      "time": "2026-09-07T11:01:36.457Z",
+      "actor": "System",
+      "action": "Reservation completed",
+      "target": "Robot 01",
+      "details": "REQ-2026-001"
+    },
+    {
+      "id": "ACT-3251A3D4",
+      "time": "Aug 27, 2026, 8:23 PM",
+      "actor": "EdTech Office Admin",
+      "action": "Approval step approved",
+      "target": "Robot 01: Resource Owner Review",
+      "details": "REQ-2026-001"
+    },
+    {
+      "time": "Today 09:10",
+      "actor": "Student Body Requester",
+      "action": "Reservation submitted",
+      "target": "Robot 01"
+    },
+    {
+      "id": "ACT-38b54e11-e75c-4231-a837-575b4e7ee354",
+      "time": "2026-09-07T11:01:36.457Z",
+      "actor": "System",
+      "action": "Reservation completed",
+      "target": "Projector Set A",
+      "details": "REQ-2026-004"
+    },
+    {
+      "id": "ACT-9C08423E",
+      "time": "Oct 2, 2026, 1:54 AM",
+      "actor": "Faculty Requester",
+      "action": "Reservation submitted",
+      "target": "Community Outreach Van",
+      "details": "2026-10-20 11:30-12:30",
+      "reservationId": "REQ-2026-AE405C08"
+    },
+    {
+      "id": "ACT-FFED9EBE",
+      "time": "Sep 30, 2026, 8:10 PM",
+      "actor": "Faculty Requester",
+      "action": "Reservation submitted",
+      "target": "Community Outreach Van",
+      "details": "2026-10-01 09:00-10:00",
+      "reservationId": "REQ-2026-64B196B3"
+    },
+    {
+      "id": "ACT-18A7B8D6",
+      "time": "Sep 30, 2026, 4:10 PM",
+      "actor": "Faculty Requester",
+      "action": "Visitor request submitted",
+      "target": "ABCD",
+      "details": "2026-09-30 04:12"
+    },
+    {
+      "id": "ACT-FF115545",
+      "time": "Sep 30, 2026, 4:14 PM",
+      "actor": "Faculty Requester",
+      "action": "Reservation submitted",
+      "target": "Bobots Kit",
+      "details": "2026-10-01 08:00-09:00",
+      "reservationId": "REQ-2026-4BAB6004"
+    }
+  ],
+  "payments": [
+    {
+      "id": "PAY-002",
+      "amount": 850,
+      "status": "Verified",
+      "receipt": "receipt-REQ-2026-003.jpg",
+      "requester": "Fr. Jose",
+      "reservationId": "REQ-2026-003"
+    }
+  ],
+  "visitors": [
+    {
+      "id": "VIS-001",
+      "cars": 1,
+      "date": "2026-08-25",
+      "time": "09:30",
+      "plate": "NCR 4821",
+      "guests": 3,
+      "status": "Arrived",
+      "parking": "A1",
+      "purpose": "University partnership meeting",
+      "visitor": "Dr. Elena Cruz",
+      "requester": "CICS Visitor Requester",
+      "organization": "Department of Education"
+    },
+    {
+      "id": "VIS-002",
+      "cars": 2,
+      "date": "2026-08-25",
+      "time": "10:30",
+      "plate": "NFG 101 / DTR 904",
+      "guests": 12,
+      "status": "Arrived",
+      "parking": "A2-A3",
+      "purpose": "Campus familiarization visit",
+      "visitor": "Manila Science High School",
+      "requester": "CICS Visitor Requester",
+      "organization": "MSHS"
+    },
+    {
+      "id": "VIS-003",
+      "cars": 1,
+      "date": "2026-08-25",
+      "time": "14:00",
+      "plate": "GOV 883",
+      "guests": 2,
+      "status": "Arrived",
+      "parking": "B1",
+      "purpose": "Official courtesy call",
+      "visitor": "Atty. Ramon de Leon",
+      "requester": "College Secretary",
+      "organization": "CHED"
+    },
+    {
+      "id": "VIS-90D2F66A",
+      "cars": 2,
+      "date": "2026-09-30",
+      "time": "04:12",
+      "plate": "ABCD123",
+      "guests": 6,
+      "status": "Pending",
+      "parking": "",
+      "purpose": "VISIT VISI VIST",
+      "visitor": "ABCD",
+      "requester": "Faculty Requester",
+      "organization": "ACN"
+    }
+  ],
+  "resources": [
+    {
+      "id": "R-006",
+      "name": "Dominican Shuttle",
+      "tags": [
+        "Vehicle",
+        "Residence",
+        "Maintenance"
+      ],
+      "type": "Vehicle",
+      "driver": "With Driver",
+      "office": "Dominican Residence",
+      "status": "Under Maintenance",
+      "assetTag": "DOMRES-SHUTTLE-006",
+      "capacity": 8,
+      "location": "Residence Garage",
+      "serialNumber": "SHUTTLE-UST-006",
+      "requiresPayment": false,
+      "workflowTemplateId": "WF-EVENT"
+    },
+    {
+      "id": "R-008",
+      "name": "Visitor Parking Bay",
+      "tags": [
+        "Parking",
+        "Visitor",
+        "OSG"
+      ],
+      "type": "Visitor Service",
+      "driver": "Not applicable",
+      "office": "OSG",
+      "status": "Available",
+      "assetTag": "OSG-PARKING-008",
+      "capacity": 20,
+      "location": "Main Gate",
+      "serialNumber": "",
+      "requiresPayment": false,
+      "workflowTemplateId": "WF-BASIC"
+    },
+    {
+      "id": "R-005",
+      "fee": 850,
+      "name": "Community Outreach Van",
+      "tags": [
+        "Vehicle",
+        "Outreach",
+        "Paid"
+      ],
+      "type": "Vehicle",
+      "driver": "With Driver",
+      "office": "Simbahayan",
+      "status": "Available",
+      "assetTag": "SIMBA-VAN-005",
+      "capacity": 12,
+      "location": "Carpark B",
+      "serialNumber": "VAN-UST-005",
+      "requiresPayment": true,
+      "workflowTemplateId": "WF-EVENT"
+    },
+    {
+      "id": "R-001",
+      "name": "Robot 01",
+      "tags": [
+        "Robotics",
+        "Lab",
+        "Prototype"
+      ],
+      "type": "Equipment",
+      "driver": "Not applicable",
+      "office": "EdTech",
+      "status": "Available",
+      "assetTag": "EDTECH-ROBOT-001",
+      "capacity": 1,
+      "location": "CICS Lab",
+      "serialNumber": "ROB-UST-001",
+      "requiresPayment": false,
+      "workflowTemplateId": "WF-BASIC"
+    },
+    {
+      "id": "R-002",
+      "name": "Bobots Kit",
+      "tags": [
+        "Robotics",
+        "Kit",
+        "Classroom"
+      ],
+      "type": "Equipment",
+      "driver": "Not applicable",
+      "office": "EdTech",
+      "status": "Available",
+      "assetTag": "EDTECH-BOTKIT-002",
+      "capacity": 4,
+      "location": "CICS Lab",
+      "serialNumber": "BOTKIT-UST-002",
+      "requiresPayment": false,
+      "workflowTemplateId": "WF-BASIC"
+    },
+    {
+      "id": "R-003",
+      "name": "Loaner Laptops",
+      "tags": [
+        "Laptop",
+        "Loaner",
+        "Stockroom"
+      ],
+      "type": "Equipment",
+      "driver": "Not applicable",
+      "office": "EdTech",
+      "status": "Reserved",
+      "assetTag": "EDTECH-LAPTOP-003",
+      "capacity": 12,
+      "location": "CICS Stockroom",
+      "serialNumber": "",
+      "requiresPayment": false,
+      "workflowTemplateId": "WF-BASIC"
+    },
+    {
+      "id": "R-007",
+      "name": "Projector Set A",
+      "tags": [
+        "AV",
+        "Projector",
+        "Portable"
+      ],
+      "type": "Equipment",
+      "driver": "Not applicable",
+      "office": "EdTech",
+      "status": "Available",
+      "assetTag": "EDTECH-PROJ-007",
+      "capacity": 1,
+      "location": "AV Storage",
+      "serialNumber": "PROJ-UST-007",
+      "requiresPayment": false,
+      "workflowTemplateId": "WF-BASIC"
+    }
+  ],
+  "reservations": [
+    {
+      "id": "REQ-HIDDEN-CONFLICT",
+      "end": "10:00",
+      "date": "2099-09-10",
+      "type": "Equipment",
+      "start": "09:00",
+      "office": "Simbahayan",
+      "status": "Under Owner Review",
+      "purpose": "Existing pending request",
+      "quantity": 1,
+      "requester": "Other Requester",
+      "resourceId": "R-007",
+      "submittedAt": "Just now",
+      "resourceName": "Projector Set A",
+      "approvalSteps": [
+        {
+          "id": "REQ-HIDDEN-CONFLICT-OWNER",
+          "office": "Simbahayan",
+          "status": "Pending",
+          "sequence": 1
+        }
+      ],
+      "requiresPayment": false,
+      "workflowTemplateId": "WF-BASIC"
+    },
+    {
+      "id": "REQ-2026-003",
+      "end": "15:00",
+      "date": "2026-08-29",
+      "type": "Vehicle",
+      "start": "09:00",
+      "office": "Simbahayan",
+      "status": "Expired",
+      "purpose": "Outreach partner visit",
+      "expiredAt": "2026-09-07T11:01:36.457Z",
+      "paymentId": "PAY-002",
+      "requester": "Fr. Jose",
+      "resourceId": "R-005",
+      "submittedAt": "2026-08-23 14:22",
+      "expiryReason": "Scheduled end time passed before final confirmation.",
+      "resourceName": "Community Outreach Van",
+      "approvalSteps": [
+        {
+          "id": "REQ-2026-003-OWNER",
+          "name": "Resource Owner Review",
+          "office": "Simbahayan",
+          "status": "Approved",
+          "sequence": 1,
+          "decidedAt": "",
+          "decidedBy": "Legacy migration",
+          "templateStepId": "OWNER"
+        }
+      ],
+      "requiresPayment": true,
+      "workflowTemplateId": "WF-BASIC"
+    },
+    {
+      "id": "REQ-2026-004",
+      "end": "12:00",
+      "date": "2026-08-30",
+      "type": "Equipment",
+      "start": "10:00",
+      "office": "Simbahayan",
+      "status": "Completed",
+      "purpose": "College seminar documentation",
+      "requester": "CICS Visitor Requester",
+      "resourceId": "R-007",
+      "completedAt": "2026-09-07T11:01:36.457Z",
+      "submittedAt": "2026-08-24 11:18",
+      "resourceName": "Projector Set A",
+      "approvalSteps": [
+        {
+          "id": "REQ-2026-004-OWNER",
+          "name": "Resource Owner Review",
+          "office": "Simbahayan",
+          "status": "Approved",
+          "sequence": 1,
+          "decidedAt": "Just now",
+          "decidedBy": "Simbahayan Office Admin",
+          "templateStepId": "OWNER"
+        }
+      ],
+      "requiresPayment": false,
+      "workflowTemplateId": "WF-BASIC"
+    },
+    {
+      "id": "REQ-2026-001",
+      "end": "12:00",
+      "date": "2026-08-27",
+      "type": "Equipment",
+      "start": "08:00",
+      "office": "EdTech",
+      "status": "Completed",
+      "purpose": "Robotics class prototype testing",
+      "requester": "Student Body Requester",
+      "resourceId": "R-001",
+      "completedAt": "2026-09-07T11:01:36.457Z",
+      "submittedAt": "2026-08-24 09:10",
+      "resourceName": "Robot 01",
+      "approvalSteps": [
+        {
+          "id": "REQ-2026-001-OWNER",
+          "name": "Resource Owner Review",
+          "office": "EdTech",
+          "status": "Approved",
+          "sequence": 1,
+          "decidedAt": "Aug 27, 2026, 8:23 PM",
+          "decidedBy": "EdTech Office Admin",
+          "templateStepId": "OWNER"
+        }
+      ],
+      "requiresPayment": false,
+      "workflowTemplateId": "WF-BASIC"
+    },
+    {
+      "id": "REQ-2026-AE405C08",
+      "end": "12:30",
+      "date": "2026-10-20",
+      "type": "Vehicle",
+      "start": "11:30",
+      "office": "Simbahayan",
+      "status": "Under Owner Review",
+      "purpose": ";LKJHGFDFGVBHN",
+      "quantity": 1,
+      "requester": "Faculty Requester",
+      "resourceId": "R-005",
+      "submittedAt": "Oct 2, 2026, 1:54 AM",
+      "driverChoice": "With Driver",
+      "resourceName": "Community Outreach Van",
+      "workflowName": "Event Vehicle Approval",
+      "approvalSteps": [
+        {
+          "id": "REQ-2026-AE405C08-OWNER",
+          "name": "Resource Owner Review",
+          "office": "Simbahayan",
+          "status": "Pending",
+          "sequence": 1,
+          "decidedAt": "",
+          "decidedBy": "",
+          "templateStepId": "OWNER"
+        }
+      ],
+      "requiresPayment": true,
+      "rescheduleCount": 0,
+      "resourceAssetTag": "SIMBA-VAN-005",
+      "workflowTemplateId": "WF-EVENT"
+    },
+    {
+      "id": "REQ-2026-64B196B3",
+      "end": "10:00",
+      "date": "2026-10-01",
+      "type": "Vehicle",
+      "start": "09:00",
+      "office": "Simbahayan",
+      "status": "Expired",
+      "purpose": "ABCABCABCABCA",
+      "quantity": 1,
+      "expiredAt": "2026-10-01T16:18:07.560Z",
+      "requester": "Faculty Requester",
+      "resourceId": "R-005",
+      "submittedAt": "Sep 30, 2026, 8:10 PM",
+      "driverChoice": "With Driver",
+      "expiryReason": "Scheduled end time passed before final confirmation.",
+      "resourceName": "Community Outreach Van",
+      "workflowName": "Basic Resource Approval",
+      "approvalSteps": [
+        {
+          "id": "REQ-2026-64B196B3-OWNER",
+          "name": "Resource Owner Review",
+          "office": "Simbahayan",
+          "status": "Skipped",
+          "sequence": 1,
+          "decidedAt": "",
+          "decidedBy": "",
+          "templateStepId": "OWNER"
+        }
+      ],
+      "requiresPayment": true,
+      "rescheduleCount": 0,
+      "resourceAssetTag": "SIMBA-VAN-005",
+      "workflowTemplateId": "WF-BASIC"
+    },
+    {
+      "id": "REQ-2026-4BAB6004",
+      "end": "09:00",
+      "date": "2026-10-01",
+      "type": "Equipment",
+      "start": "08:00",
+      "office": "EdTech",
+      "status": "Expired",
+      "purpose": "TYTYTYTYTYTYTYTYTYTYTYTYYT",
+      "quantity": 1,
+      "expiredAt": "2026-10-01T16:18:07.560Z",
+      "requester": "Faculty Requester",
+      "resourceId": "R-002",
+      "submittedAt": "Sep 30, 2026, 4:14 PM",
+      "expiryReason": "Scheduled end time passed before final confirmation.",
+      "resourceName": "Bobots Kit",
+      "workflowName": "Basic Resource Approval",
+      "approvalSteps": [
+        {
+          "id": "REQ-2026-4BAB6004-OWNER",
+          "name": "Resource Owner Review",
+          "office": "EdTech",
+          "status": "Skipped",
+          "sequence": 1,
+          "decidedAt": "",
+          "decidedBy": "",
+          "templateStepId": "OWNER"
+        }
+      ],
+      "requiresPayment": false,
+      "rescheduleCount": 0,
+      "resourceAssetTag": "EDTECH-BOTKIT-002",
+      "workflowTemplateId": "WF-BASIC"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "N-026e1e85-716a-4d19-a723-e6f3f398069d",
+      "time": "2026-10-01T16:18:07.561Z",
+      "type": "Reservation",
+      "user": "Simbahayan",
+      "office": "Simbahayan",
+      "unread": false,
+      "message": "Community Outreach Van: Faculty Requester's request expired before final confirmation."
+    },
+    {
+      "id": "N-6293f0b1-547d-42e8-a037-6626b7d0cc3f",
+      "time": "2026-09-07T11:01:36.457Z",
+      "type": "Reservation",
+      "user": "CICS Visitor Requester",
+      "unread": false,
+      "message": "Projector Set A was completed after its scheduled use."
+    },
+    {
+      "id": "N-b718baaf-8d7b-4bcc-afde-d5ebae78a977",
+      "time": "2026-09-07T11:01:36.457Z",
+      "type": "Reservation",
+      "user": "Fr. Jose",
+      "unread": true,
+      "message": "Community Outreach Van expired because the scheduled time passed before final confirmation."
+    },
+    {
+      "id": "N-002",
+      "user": "Anna Villanueva",
+      "unread": false,
+      "message": "Please wait for payment verification before final confirmation."
+    },
+    {
+      "id": "N-1787702830119",
+      "user": "CICS Visitor Requester",
+      "unread": false,
+      "message": "Resource Owner Review was approved. Current status: Confirmed."
+    },
+    {
+      "id": "N-1787702830119-21433A8B",
+      "user": "CICS Visitor Requester",
+      "unread": false,
+      "message": "Resource Owner Review was approved. Current status: Confirmed."
+    },
+    {
+      "id": "N-1787702830119-F3209253",
+      "user": "CICS Visitor Requester",
+      "unread": false,
+      "message": "Resource Owner Review was approved. Current status: Confirmed."
+    },
+    {
+      "id": "N-9d95c16d-4840-4d49-aaa7-3a0a90badcee",
+      "time": "2026-09-07T11:01:36.457Z",
+      "type": "Reservation",
+      "user": "Student Body Requester",
+      "unread": false,
+      "message": "Robot 01 was completed after its scheduled use."
+    },
+    {
+      "id": "N-001",
+      "user": "Student Body Requester",
+      "unread": false,
+      "message": "Robot 01 request is pending EdTech review."
+    },
+    {
+      "id": "N-1787703167969",
+      "user": "Student Body Requester",
+      "unread": false,
+      "message": "Venue Owner Review was approved. Current status: Under Additional Review."
+    },
+    {
+      "id": "N-1787706752591",
+      "user": "Student Body Requester",
+      "unread": false,
+      "message": "External Guest and Security Review was approved. Current status: Under Additional Review."
+    },
+    {
+      "id": "N-1787706752591-A78571E2",
+      "user": "Student Body Requester",
+      "unread": false,
+      "message": "External Guest and Security Review was approved. Current status: Under Additional Review."
+    },
+    {
+      "id": "N-1787706752591-7D542E1C",
+      "user": "Student Body Requester",
+      "unread": false,
+      "message": "External Guest and Security Review was approved. Current status: Under Additional Review."
+    },
+    {
+      "id": "N-058D0B4D",
+      "time": "Aug 27, 2026, 8:23 PM",
+      "type": "Approval",
+      "user": "Student Body Requester",
+      "unread": false,
+      "message": "Robot 01: Resource Owner Review was approved by EdTech Office Admin. Current status: Confirmed."
+    },
+    {
+      "id": "N-d9af4f8c-eedb-4e35-b534-200afec5728d",
+      "time": "2026-09-07T11:01:36.457Z",
+      "type": "Reservation",
+      "user": "Simbahayan",
+      "office": "Simbahayan",
+      "unread": false,
+      "message": "Community Outreach Van: Fr. Jose's request expired before final confirmation."
+    },
+    {
+      "id": "N-70529478",
+      "time": "Sep 30, 2026, 8:10 PM",
+      "type": "Reservation",
+      "user": "Simbahayan",
+      "unread": false,
+      "message": "Community Outreach Van: new reservation request from Faculty Requester needs review."
+    },
+    {
+      "id": "N-8c9a5f64-12cc-4303-926d-781f9a2621bd",
+      "time": "2026-10-01T16:18:07.561Z",
+      "type": "Reservation",
+      "user": "EdTech",
+      "office": "EdTech",
+      "unread": true,
+      "message": "Bobots Kit: Faculty Requester's request expired before final confirmation."
+    },
+    {
+      "id": "N-61141C7F",
+      "time": "Sep 30, 2026, 4:14 PM",
+      "type": "Reservation",
+      "user": "EdTech",
+      "unread": true,
+      "message": "Bobots Kit: new reservation request from Faculty Requester needs review."
+    },
+    {
+      "id": "N-E2D0ABD9",
+      "time": "Oct 2, 2026, 1:54 AM",
+      "type": "Reservation",
+      "user": "Simbahayan",
+      "unread": false,
+      "message": "Community Outreach Van: new reservation request from Faculty Requester needs review."
+    },
+    {
+      "id": "N-79F94555",
+      "time": "Oct 2, 2026, 1:54 AM",
+      "type": "Reservation",
+      "user": "Faculty Requester",
+      "office": "Simbahayan",
+      "unread": true,
+      "message": "Community Outreach Van request was submitted and routed to Simbahayan."
+    },
+    {
+      "id": "N-0b5561b3-42f3-4fcd-a48d-b93fc31bce20",
+      "time": "2026-10-01T16:18:07.561Z",
+      "type": "Reservation",
+      "user": "Faculty Requester",
+      "unread": true,
+      "message": "Bobots Kit expired because the scheduled time passed before final confirmation."
+    },
+    {
+      "id": "N-35292ac4-91de-4554-9955-2e8e3a6bc2e3",
+      "time": "2026-10-01T16:18:07.561Z",
+      "type": "Reservation",
+      "user": "Faculty Requester",
+      "unread": true,
+      "message": "Community Outreach Van expired because the scheduled time passed before final confirmation."
+    },
+    {
+      "id": "N-2B917F69",
+      "time": "Sep 30, 2026, 8:10 PM",
+      "type": "Reservation",
+      "user": "Faculty Requester",
+      "office": "Simbahayan",
+      "unread": true,
+      "message": "Community Outreach Van request was submitted and routed to Simbahayan."
+    },
+    {
+      "id": "N-A90A2B1F",
+      "time": "Sep 30, 2026, 4:10 PM",
+      "type": "Visitor",
+      "user": "Faculty Requester",
+      "unread": false,
+      "message": "ABCD: visitor access request submitted to OSG for review."
+    },
+    {
+      "id": "N-84573835",
+      "time": "Sep 30, 2026, 4:14 PM",
+      "type": "Reservation",
+      "user": "Faculty Requester",
+      "office": "EdTech",
+      "unread": true,
+      "message": "Bobots Kit request was submitted and routed to EdTech."
+    }
+  ],
+  "systemSettings": [
+    {
+      "id": "SYSTEM",
+      "parkingCapacity": 20,
+      "maxReservationHours": 12,
+      "paymentInstructions": "Settle the exact fee with the resource-owning office after the final approval. Bring your reservation ID and pay at the office cashier, or ask the office for its bank or e-payment details. Upload the official receipt in My Requests before the payment window closes.",
+      "paymentDeadlineHours": 24,
+      "defaultWorkflowTemplateId": "WF-BASIC"
+    }
+  ],
+  "approvalTemplates": [
+    {
+      "id": "WF-BASIC",
+      "name": "Basic Resource Approval",
+      "steps": [
+        {
+          "id": "OWNER",
+          "name": "Resource Owner Review",
+          "office": "$OWNER",
+          "sequence": 1
+        }
+      ],
+      "status": "Active",
+      "resourceType": "All"
+    },
+    {
+      "id": "WF-EVENT",
+      "name": "Event Vehicle Approval",
+      "steps": [
+        {
+          "id": "OWNER",
+          "name": "Resource Owner Review",
+          "office": "$OWNER",
+          "sequence": 1
+        },
+        {
+          "id": "SETUP",
+          "name": "Facilities Setup",
+          "office": "Facilities Management",
+          "sequence": 2,
+          "approvingBodyId": "AB-001"
+        },
+        {
+          "id": "OSG",
+          "name": "OSG Event Review",
+          "office": "OSG",
+          "sequence": 2,
+          "approvingBodyId": "AB-002"
+        },
+        {
+          "id": "PARKING",
+          "name": "Visitor Parking Review",
+          "office": "OSG",
+          "sequence": 2
+        }
+      ],
+      "status": "Active",
+      "resourceType": "Vehicle"
+    }
+  ]
+}
