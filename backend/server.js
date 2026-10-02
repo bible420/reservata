@@ -813,7 +813,7 @@ function mockSsoPage(parameters, { error = "", selectedEmail = "" } = {}) {
     input:focus { outline: 3px solid rgba(27,126,159,.18); border-color: #1b7e9f; }
     .error { margin: 0; padding: 11px 12px; color: #8d2020; background: #fff0f0; border-left: 3px solid #b52e2e; font-size: 13px; }
     .error[hidden] { display: none; }
-    .actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-top: 3px; }
+    .actions { display: flex; flex-direction: row-reverse; flex-wrap: wrap; justify-content: flex-start; gap: 10px; margin-top: 3px; }
     button { min-height: 44px; padding: 0 17px; border-radius: 6px; border: 1px solid #c8cbd1; font: inherit; font-weight: 700; cursor: pointer; }
     .cancel { background: white; color: #252932; }
     .continue { border-color: #d99f00; background: #ffbd1a; color: #111318; }
@@ -832,8 +832,9 @@ function mockSsoPage(parameters, { error = "", selectedEmail = "" } = {}) {
       <label>Password<input id="mock-sso-password" type="password" autocomplete="current-password" maxlength="128" required></label>
       <p class="error" id="mock-sso-encryption-error" role="alert" hidden>Secure password submission could not be prepared. Please try again.</p>
       <div class="actions">
-        <button class="cancel" name="action" value="cancel" formnovalidate>Cancel</button>
+        <!-- Continue comes first so Enter (implicit submission) uses it; row-reverse keeps Cancel on the left. -->
         <button class="continue" name="action" value="continue">Continue</button>
+        <button class="cancel" name="action" value="cancel" formnovalidate>Cancel</button>
       </div>
     </form>
     <script src="/mock-sso/encrypt.js" defer></script>
